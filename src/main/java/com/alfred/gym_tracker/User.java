@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="Users")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,21 +54,21 @@ public class User {
 	public double getHeight() {
 		return height;
 	}
-	public void setHeight(int height) {
+	public void setHeight(double height) {
 		this.height =  height;
 	}
 	
 	public double getWeight() {
 		return weight;
 	}
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight =  weight;
 	}
 	
 	public double getBmi() {
 		return bmi;
 	}
-	public void setBmi(int bmi) {
+	public void setBmi(double bmi) {
 		this.bmi =  bmi;
 	}
 }
