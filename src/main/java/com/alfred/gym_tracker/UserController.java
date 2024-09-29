@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 
-
+@RestController
 public class UserController {
 	@Autowired
 	UserRepo userRepo;
@@ -43,15 +43,11 @@ public class UserController {
 		
 	}
 	
-	@PostMapping
+	@PostMapping("/saveUser")
 	public void saveUser(@RequestBody User newUser) {
 			userRepo.save(newUser);
 	}
 	
-	@GetMapping(value = "/users")
-	public  List<User> getUsers() {
-		return userRepo.findAll();
-	}
 	
 	
 	

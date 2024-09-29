@@ -15,6 +15,10 @@ public class Workout {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Exercise> exercises;
 	
+	@ManyToOne  // Many workouts belong to one user
+    @JoinColumn(name = "user_id")  // Foreign key in the Workout table
+    private User user;
+	
 	public Long getId() {
         return id;
     }
@@ -29,6 +33,14 @@ public class Workout {
 
     public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
+    }
+    
+    public String getMuscleGroup() {
+    	return muscleGroup;
+    }
+    
+    public void setMuscleGroup(String muscleGroup) {
+    	this.muscleGroup = muscleGroup;
     }
 
 }

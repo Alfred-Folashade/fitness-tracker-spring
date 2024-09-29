@@ -1,10 +1,14 @@
 package com.alfred.gym_tracker;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,6 +32,9 @@ public class User {
 	
 	@Column
 	private double bmi = weight / height * height;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
+	private List<Workout> workouts;
 	
 	public long getId() {
 		return id;
@@ -71,4 +78,12 @@ public class User {
 	public void setBmi(double bmi) {
 		this.bmi =  bmi;
 	}
+	
+	public List<Workout> getWorkout() {
+        return workouts;
+    }
+
+    public void setWorkout(List<Workout> workouts) {
+        this.workouts = workouts;
+    }
 }
