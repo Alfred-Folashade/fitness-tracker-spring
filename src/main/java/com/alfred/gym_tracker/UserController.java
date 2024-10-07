@@ -11,41 +11,34 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController {
 	@Autowired
-	UserRepo userRepo;
+	UserService userService;
 	
 	@GetMapping(value="/users")
 	public List<User> getAllUsers(){
-		return userRepo.findAll();
+		return userService.getAllUsers();
 	}
 	
 	@GetMapping(value="/getUserById{id}")
 	public Optional<User> getUserById(@PathVariable Long id) {
-		return userRepo.findById(id);
+		return userService.getUserById(id);
 	}
 	
 	@PostMapping("/updateById{id}")
 	public void updateUserById(@PathVariable Long id, @RequestBody User user) {
-		User updateUser = userRepo.findById(id).get();
-		updateUser.setAge(user.getAge());
-		updateUser.setFirstName(user.getName());
-		updateUser.setHeight(user.getHeight());
-		updateUser.setWeight(user.getWeight());
-		updateUser.setBmi(user.getBmi());
-		userRepo.save(updateUser);
+		userService.updateUserById(id, user);
 	}
 	
 	
 	@DeleteMapping("/deleteUserById{id}")
 	public void deleteById(@PathVariable Long id) {
-		User deleteUser = userRepo.findById(id).get();
-		userRepo.delete(deleteUser);
+		userService.deleteById(id);
 		
 		
 	}
 	
 	@PostMapping("/saveUser")
 	public void saveUser(@RequestBody User newUser) {
-			userRepo.save(newUser);
+		userService.saveUser(newUser);
 	}
 	
 	
