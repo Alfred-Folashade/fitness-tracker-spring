@@ -14,35 +14,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WorkoutController {
 	@Autowired
-	WorkoutRepo workoutRepo;
+	WorkoutService workoutService;
 	
 	@GetMapping(value="/workouts")
 	public List<Workout> getAllWorkouts(){
-		return workoutRepo.findAll();
+		return workoutService.getAllWorkouts();
 	}
 	
 	@GetMapping(value="/getWorkoutById{id}")
 	public Optional<Workout> getWorkoutById(@PathVariable Long id) {
-		return workoutRepo.findById(id);
+		return workoutService.getWorkoutById(id);
 	}
 	
 	@DeleteMapping("/deleteWorkoutById{id}")
 	public void deleteById(@PathVariable Long id) {
-		Workout deleteWorkout = workoutRepo.findById(id).get();
-		workoutRepo.delete(deleteWorkout);
+		workoutService.deleteById(id);
 	}
 	
 	
 	@PostMapping("/updateWorkoutById{id}")
 	public void updateWorkoutById(@PathVariable Long id, @RequestBody Workout workout) {
-		Workout updateWorkout = workoutRepo.findById(id).get();
-		updateWorkout.setExercises(workout.getExercises());
-		updateWorkout.setMuscleGroup(workout.getMuscleGroup());
-		workoutRepo.save(updateWorkout);
+		workoutService.updateWorkoutById(id, workout);
 	}
 	
 	@PostMapping("/saveWorkout")
 	public void saveUser(@RequestBody Workout newWorkout) {
-		workoutRepo.save(newWorkout);
+		workoutService.saveUser(newWorkout);
 	}
 }
