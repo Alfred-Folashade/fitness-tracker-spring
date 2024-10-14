@@ -16,18 +16,18 @@ public class UserService {
 	@Autowired
 	UserRepo userRepo;
 	
-	@GetMapping(value="/users")
+	
 	public List<User> getAllUsers(){
 		return userRepo.findAll();
 	}
 	
-	@GetMapping(value="/getUserById{id}")
-	public Optional<User> getUserById(@PathVariable Long id) {
+	
+	public Optional<User> getUserById(Long id) {
 		return userRepo.findById(id);
 	}
 	
-	@PostMapping("/updateById{id}")
-	public void updateUserById(@PathVariable Long id, @RequestBody User user) {
+	
+	public void updateUserById(Long id, User user) {
 		User updateUser = userRepo.findById(id).get();
 		updateUser.setAge(user.getAge());
 		updateUser.setFirstName(user.getName());
@@ -38,16 +38,16 @@ public class UserService {
 	}
 	
 	
-	@DeleteMapping("/deleteUserById{id}")
-	public void deleteById(@PathVariable Long id) {
+	
+	public void deleteById(Long id) {
 		User deleteUser = userRepo.findById(id).get();
 		userRepo.delete(deleteUser);
 		
 		
 	}
 	
-	@PostMapping("/saveUser")
-	public void saveUser(@RequestBody User newUser) {
+	
+	public void saveUser(User newUser) {
 			userRepo.save(newUser);
 	}
 	
