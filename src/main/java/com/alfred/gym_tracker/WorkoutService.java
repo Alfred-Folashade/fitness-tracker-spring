@@ -16,6 +16,8 @@ public class WorkoutService {
 	@Autowired
 	WorkoutRepo workoutRepo;
 	
+	@Autowired
+    ExerciseRepo exerciseRepo;
 	
 	public List<Workout> getAllWorkouts(){
 		return workoutRepo.findAll();
@@ -41,7 +43,26 @@ public class WorkoutService {
 	}
 	
 	
-	public void saveUser(Workout newWorkout) {
+	public void saveWorkout(Workout newWorkout) {
 		workoutRepo.save(newWorkout);
+	}
+	
+	public void addExercise(Long workoutId, int sets, int repetitions, double weight, int restTime) {
+		Workout workout = workoutRepo.findById(workoutId)
+	            .orElseThrow(() -> new IllegalArgumentException("Workout not found"));
+
+	        Exercise exercise = new Exercise();
+	        exercise.setSets(sets);
+	        exercise.setRepetitions(repetitions);
+	        exercise.setWeight(weight);
+	        exercise.setRestTime(restTime);
+
+	        // Save the new exercise
+	        Exercise savedExercise = exerciseRepo.save(exercise);
+
+	        // Add the exercise to the workout and save the updated workout
+	        workout.getExercises().add(savedExercise);
+	        workoutRepo.save(workout);
+
 	}
 }

@@ -38,7 +38,7 @@ public class WorkoutController {
 	}
 	
 	@PostMapping("/saveWorkout")
-	public void saveUser(@RequestBody Workout newWorkout) {
-		workoutService.saveUser(newWorkout);
+	public void saveWorkout(@RequestBody Workout newWorkout) {
+		workoutService.saveWorkout(newWorkout);
 	}
 }
