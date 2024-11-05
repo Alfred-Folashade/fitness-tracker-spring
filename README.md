@@ -12,8 +12,8 @@ View a history of past workouts
 Technologies Used
 
 Backend: Java, Spring Boot
-Database: H2 (or specify your database)
-Build Tool: Maven (or Gradle if you're using that)
+Database: MySql
+Build Tool: Maven 
 Testing Framework: JUnit
 Future Features
 
