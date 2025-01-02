@@ -8,7 +8,7 @@ public class Exercise {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	private String name;
 	private int sets;
 	private int repetitions;
 	
@@ -21,6 +21,14 @@ public class Exercise {
 
 	public void setId(long id) {
 		this.id =  id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name =  name;
 	}
 	
 	public double getWeight() {
