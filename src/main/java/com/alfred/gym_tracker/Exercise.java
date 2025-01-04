@@ -15,6 +15,10 @@ public class Exercise {
 	private double weight;
 	private int  restTime;
 	
+	@ManyToOne
+    @JoinColumn(name = "workout_id")
+    private Workout workout;
+	
 	public long getId() {
 		return id;
 	}
