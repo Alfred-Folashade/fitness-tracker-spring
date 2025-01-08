@@ -30,10 +30,10 @@ public class UserService {
 	public void updateUserById(Long id, User user) {
 		User updateUser = userRepo.findById(id).get();
 		updateUser.setAge(user.getAge());
-		updateUser.setFirstName(user.getName());
+		//updateUser.setFirstName(user.getName());
 		updateUser.setHeight(user.getHeight());
 		updateUser.setWeight(user.getWeight());
-		updateUser.setBmi(user.getBmi());
+		//updateUser.setBmi(user.getBmi());
 		userRepo.save(updateUser);
 	}
 	

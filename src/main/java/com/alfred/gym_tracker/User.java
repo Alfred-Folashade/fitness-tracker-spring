@@ -19,7 +19,13 @@ public class User {
 	private long id;
 	
 	@Column 
-	private String name;
+	private String username;
+	
+	@Column 
+	private String email;
+	
+	@Column 
+	private String password;
 	
 	@Column
 	private int age;
@@ -31,7 +37,7 @@ public class User {
 	private double height;
 	
 	@Column
-	private double bmi = weight / height * height;
+	private double bmi ; 
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
 	private List<Workout> workouts;
@@ -44,11 +50,11 @@ public class User {
 		this.id =  id;
 	}
 	
-	public String getName () {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-	public void setFirstName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public int getAge() {
@@ -59,10 +65,12 @@ public class User {
 	}
 	
 	public double getHeight() {
+		
 		return height;
 	}
 	public void setHeight(double height) {
 		this.height =  height;
+		setBmi();
 	}
 	
 	public double getWeight() {
@@ -70,13 +78,14 @@ public class User {
 	}
 	public void setWeight(double weight) {
 		this.weight =  weight;
+		setBmi();
 	}
 	
 	public double getBmi() {
 		return bmi;
 	}
-	public void setBmi(double bmi) {
-		this.bmi =  bmi;
+	public void setBmi() {
+		bmi =  weight / height * height;
 	}
 	
 	public List<Workout> getWorkout() {
@@ -86,4 +95,18 @@ public class User {
     public void setWorkout(List<Workout> workouts) {
         this.workouts = workouts;
     }
+    
+    public String getPassword () {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getEmail () {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

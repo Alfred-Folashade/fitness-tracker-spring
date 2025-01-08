@@ -19,9 +19,11 @@ public class WorkoutController {
 	@Autowired
 	WorkoutService workoutService;
 	
-	@GetMapping(value="/workouts")
-	public List<Workout> getAllWorkouts(){
-		return workoutService.getAllWorkouts();
+	@GetMapping("/")
+	public String getAllWorkouts(Model model){
+		model.addAttribute("allworkouts", workoutService.getAllWorkouts());
+		return "index";
+		
 	}
 	
 	@GetMapping(value="/addNewWorkout")
@@ -50,7 +52,7 @@ public class WorkoutController {
 	@PostMapping("/saveWorkout")
 	public String saveWorkout(@ModelAttribute("newWorkout") Workout newWorkout) {
 		workoutService.saveWorkout(newWorkout);
-		System.out.println(newWorkout);
+		
 		return "index";
 	}
 }
