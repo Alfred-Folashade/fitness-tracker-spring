@@ -3,21 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <title>Workout</title>
+<style>
+	table, th, td{
+		border:1px solid black;
+	}
+</style>
 </head>
 <body>
 	<h1>Create a new Workout!</h1>
-	<form>
-		<label>userID</label><br/>
-		<input type="text"><br/>
-		<label>Name</label><br/>
-		<input type="text"><br/>
-		<label>Exercise 1</label><br/>
-		<input type="text"><br/>
-		<label>Exercise 2</label><br/>
-		<input type="text"><br/>
-		<label>Exercise 3</label><br/>
-		<input type="text"><br/>
-		<input type="submit">
+	<form action="#" th:action="@{/saveWorkout}" th:object="${newWorkout}"
+		method="post">
+		
+		<label>userID</label><br /> 
+		<input type="text" th:field="*{id}"  placeholder="userID"><br /> 
+		<label>Name</label><br /> 
+		<input
+			type="text" th:field="*{name}" placeholder="Name"><br /> 
+		<div id="exerciseFields">
+			<div>
+			<label>Exercise Name</label><br /> 
+			<input type="text" th:field="*{exercises[0].name}"
+				placeholder="Exercise name"><br /> 
+			<label>Sets</label><br />
+			<input type="text" th:field="*{exercises[0].sets}" placeholder="Sets"><br />
+			<label>Repetitions</label><br /> <input type="text"
+				th:field="*{exercises[0].repetitions}" placeholder="Repetitons(Reps)"><br />
+			</div>
+		</div>
+		<button type="button" onclick="addExerciseField()">Add new Exercise</button>
+		<button type="submit">Submit</button>
+		
 	</form>
+
+	<script>
+		let exerciseIndex = 1;
+		
+		function addExerciseField() {
+			const newField =`
+					<div>
+						<label>Exercise Name</label><br/>
+						<input type="text" th:field="*{exercises[${exerciseIndex}].name}" placeholder="Exercise name"/><br/>
+						<label>Sets</label><br/>
+						<input type="text" th:field="*{exercises[${exerciseIndex}].sets}" placeholder="Sets"/><br/>
+						<label>Repetitions</label><br/>
+						<input type="text" th:field="*{exercises[${exerciseIndex}].repetitions}" placeholder="Repetitons(Reps)"/><br/>
+					</div>
+				`;
+				document.getElementById("exerciseFields").insertAdjacentHTML('beforeend', newField);
+				exerciseIndex++;
+		}
+	</script>
 </body>
 </html>

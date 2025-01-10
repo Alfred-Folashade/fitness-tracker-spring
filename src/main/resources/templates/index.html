@@ -3,9 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Home-page</title>
+<style>
+	table, th, td{
+		border:1px solid black;
+	}
+</style>
 </head>
 <body>
 	<h1>Fitness Tracker Home Page!</h1>
-	<a href="workout.html">Create a new workout</a>
+	<table style="width:80%">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Id</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="workout: ${allworkouts}">
+				<td th:text="${workout.name}"></td>
+				<td th:text="${workout.id}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br/>
+	<a th:href="@{/addNewWorkout}">Create a new workout</a>
+	<a th:href="@{/registerNew}">Sign up!</a>
+	
 </body>
 </html>
