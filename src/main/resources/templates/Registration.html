@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registration</title>
+</head>
+<body>
+	<h1>Registration</h1>
+	<form action="#" th:action="@{/saveUser}" th:object="${newUser}" method="post">
+		<label>Username</label><br/>
+		<input type="text" th:field="*{username}" required></input><br/>
+		<label>Age</label><br/>
+		<input type="number" th:field="*{age}" required></input><br/>
+		<label>Weight</label><br/>
+		<input type="number" th:field="*{weight}" required></input><br/>
+		<label>Height</label><br/>
+		<input type="number" th:field="*{height}" required></input><br/>
+		<label>Email Address</label><br/>
+		<input  type="email" th:field="*{email}" required></input><br/>
+		<label>Password</label><br/>
+		<input type="password" th:field="*{password}" required></input><br/>
+		<button type="submit">Register</button>
+		
+	</form>
+</body>
+</html>
