@@ -8,9 +8,18 @@
 		border:1px solid black;
 	}
 </style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<h1>Fitness Tracker Home Page!</h1>
+	<nav class="navbar">
+		<div class="logo"><h1>Fitness Tracker Home Page!</h1></div>
+		<u class="nav-links">
+			<li><a th:href="@{/addNewWorkout}">Create a new workout</a></li>
+			<li><a th:href="@{/registerNew}">Sign up!</a></li>
+			<li><a th:href="@{/login}">Login!</a></li>
+		</ul>
+	</nav>
+	
 	<table style="width:80%">
 		<thead>
 			<tr>
@@ -26,9 +35,8 @@
 		</tbody>
 	</table>
 	<br/>
-	<a th:href="@{/addNewWorkout}">Create a new workout</a>
-	<a th:href="@{/registerNew}">Sign up!</a>
-	<a th:href="@{/login}">Login!</a>
+	
+	
 	
 </body>
 </html>
