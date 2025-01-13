@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
 
 @Controller
 public class UserController {
 	@Autowired
 	UserService userService;
+	
+	
 	
 	@GetMapping(value="/users")
 	public List<User> getAllUsers(){
@@ -51,7 +54,14 @@ public class UserController {
 		return "Registration";
 	}
 	
+	@GetMapping(value="/login")
+	public String loginNew() {
+		return "login";
+	}
 	
-	
+	@GetMapping("/index")
+    public String index() {
+        return "index";  // This corresponds to a view named 'index.html' or a route
+    }
 	
 }

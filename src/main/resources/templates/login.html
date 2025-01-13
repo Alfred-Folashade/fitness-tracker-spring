@@ -6,11 +6,11 @@
 </head>
 <body>
 	<h1>Login to your account</h1>
-	<form action="#" th:action="@{/saveUser}" th:object="${newUser}" method="post">
+	<form action="#" th:action="@{/login}"  method="post">
 		<label>Email Address</label><br/>
-		<input  type="email" th:field="*{email}" required></input><br/>
+		<input  type="email" name="email" required></input><br/>
 		<label>Password</label><br/>
-		<input type="password" th:field="*{password}" required></input><br/>
+		<input type="password" name="password" required></input><br/>
 		<button type="submit">Login</button>
 	</form>
 </body>

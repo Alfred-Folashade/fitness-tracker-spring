@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,17 @@ public class UserService {
 	@Autowired
 	UserRepo userRepo;
 	
+	
+	private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserService(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public String encodePassword(String rawPassword) {
+        return passwordEncoder.encode(rawPassword);
+    }
 	
 	public List<User> getAllUsers(){
 		return userRepo.findAll();
@@ -48,7 +61,9 @@ public class UserService {
 	
 	
 	public void saveUser(User newUser) {
-			userRepo.save(newUser);
+		String normalPassword = newUser.getPassword();
+		newUser.setPassword(encodePassword(normalPassword));
+		userRepo.save(newUser);
 	}
 	
 	
