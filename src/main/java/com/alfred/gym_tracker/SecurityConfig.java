@@ -27,7 +27,7 @@ public class SecurityConfig{
         http
             .csrf(csrf -> csrf.disable()) // Disable CSRF for simplicity (consider enabling it in production)
             .authorizeHttpRequests(auth -> auth
-            	.requestMatchers("/addNewWorkout").authenticated() // Secure specific paths
+            	.requestMatchers("/addNewWorkout", "/viewWorkouts").authenticated() // Secure specific paths
                 .anyRequest().permitAll() // Public paths
             )
             .formLogin(form -> form

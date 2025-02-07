@@ -11,7 +11,7 @@ public class Workout {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String muscleGroup;
+	private String duration;
 	
 	@OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Exercise> exercises;
@@ -45,12 +45,16 @@ public class Workout {
         this.exercises = exercises;
     }
     
-    public String getMuscleGroup() {
-    	return muscleGroup;
+    public String getDuration() {
+    	return duration;
     }
     
-    public void setMuscleGroup(String muscleGroup) {
-    	this.muscleGroup = muscleGroup;
+    public void setDuration(String duration) {
+    	this.duration = duration;
+    }
+    
+    public void setUser(User user) {
+    	this.user = user; 
     }
 
 }

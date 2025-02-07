@@ -1,5 +1,6 @@
 package com.alfred.gym_tracker;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class WorkoutController {
 	@Autowired
 	WorkoutService workoutService;
+	
+	@Autowired
+	UserRepo userRepo;
 	
 	@GetMapping("/")
 	public String getAllWorkouts(Model model){
@@ -50,9 +54,20 @@ public class WorkoutController {
 	}
 	
 	@PostMapping("/saveWorkout")
-	public String saveWorkout(@ModelAttribute("newWorkout") Workout newWorkout) {
+	public String saveWorkout(@ModelAttribute("newWorkout") Workout newWorkout, Principal principal) {
+		User user = userRepo.findByEmail(principal.getName());
+		newWorkout.setUser(user);
 		workoutService.saveWorkout(newWorkout);
 		
-		return "index";
+		return "index"; 
 	}
+	
+	@GetMapping("/viewWorkouts")
+	public String viewWorkouts(Model model, Principal principal) {
+		User user = userRepo.findByEmail(principal.getName());
+		model.addAttribute("allworkoutsuser", user.getWorkout());
+		return "viewworkouts";
+	}
+	
+	
 }

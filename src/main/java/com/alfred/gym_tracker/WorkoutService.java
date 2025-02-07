@@ -38,7 +38,7 @@ public class WorkoutService {
 	public void updateWorkoutById( Long id, Workout workout) {
 		Workout updateWorkout = workoutRepo.findById(id).get();
 		updateWorkout.setExercises(workout.getExercises());
-		updateWorkout.setMuscleGroup(workout.getMuscleGroup());
+		updateWorkout.setDuration(workout.getDuration());
 		workoutRepo.save(updateWorkout);
 	}
 	

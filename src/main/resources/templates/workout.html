@@ -11,14 +11,16 @@
 </head>
 <body>
 	<h1>Create a new Workout!</h1>
-	<form action="#" th:action="@{/saveWorkout}" th:object="${newWorkout}"
+	<form action="#" id="workoutForm" th:action="@{/saveWorkout}" th:object="${newWorkout}"
 		method="post">
 		
-		<label>userID</label><br /> 
-		<input type="text" th:field="*{id}"  placeholder="userID"><br /> 
+		
 		<label>Name</label><br /> 
 		<input
-			type="text" th:field="*{name}" placeholder="Name"><br /> 
+			type="text" th:field="*{name}" id="workoutName" placeholder="Name"><br /> 
+		<label>Duration</label><br /> 
+		<input
+			type="text" th:field="*{duration}" placeholder="Duration"><br /> 
 		<div id="exerciseFields">
 			<div>
 			<label>Exercise Name</label><br /> 
@@ -34,6 +36,19 @@
 		<button type="submit">Submit</button>
 		
 	</form>
+	
+	<table>
+	  <tr>
+	    <th></th>
+	    <th scope="col">Workout</th>
+	    <th scope="col">Duration</th>
+	  </tr>
+	  <tbody id="workoutTableBody">
+	  
+	  
+	  </tbody>
+	  
+	</table>
 
 	<script>
 		let exerciseIndex = 1;
@@ -51,6 +66,21 @@
 				`;
 				document.getElementById("exerciseFields").insertAdjacentHTML('beforeend', newField);
 				exerciseIndex++;
+		}
+		
+		const workoutForm = document.querySelector("#workoutForm");
+		workoutForm.addEventListener("submit", showNewWorkout(event));
+			
+		
+		function showNewWorkout(event){
+			event.preventDefault()
+			const tableBody = document.querySelector("#workoutTableBody");
+			const row = document.createElement("tr");
+			const workoutName = document.createElement("td");
+			workoutName.textContent = document.querySelector("#workoutName").value;
+			row.appendChild(workoutName);
+			tableBody.appendChild(row);
+			workoutForm.reset();
 		}
 	</script>
 </body>
